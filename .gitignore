@@ -1,0 +1,18 @@
+# Archivos generados por Node.js y npm
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Archivos generados por Sequelize
+migration/*.js
+seeders/*.js
+config/config.json
+
+# Archivos generados por PostgreSQL
+*.sql
+
+# Archivos de configuración local creados por dotenv
+.env
+
+# Otros archivos generados durante el desarrollo
+.DS_Store
