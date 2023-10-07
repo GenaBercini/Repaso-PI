@@ -18,7 +18,11 @@
 - GET, GETByID, POST practico
 
 
-## Comenzando
+## Rutas Disponibles
+
+GET http://localhost:5000/recipes
+GET http://localhost:5000/recipes?name.forename={name}
+GET http://localhost:5000/recipes/:{id}
 
  1. Forkear el repositorio para tener una copia del mismo en sus cuentas
  2. Clonar el repositorio en sus computadoras para comenzar a trabajar
