@@ -36,6 +36,8 @@ module.exports = (sequelize) => {
       image: {
         type: DataTypes.TEXT,
         allowNull: true,
+        defaultValue:
+          "https://res.cloudinary.com/genaro-bercini/image/upload/v1696723917/Polite-Things-You-Do-When-Youre-Trying-Another-Cultural-Food-That-Are-Actually-Rude-2000-d6610b3b71db46c595594a79b469379d_bnnrhr.jpg",
       },
       summary: {
         type: DataTypes.TEXT,

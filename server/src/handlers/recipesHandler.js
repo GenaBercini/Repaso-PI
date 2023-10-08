@@ -30,7 +30,6 @@ const recipeControllers = {
     try {
       if (id.length > 30) {
         const recipe = await getRecipeByIdDB(id);
-        console.log(recipe);
         res.status(200).json(recipe);
       } else {
         const recipe = await getRecipeByIdApi(id);

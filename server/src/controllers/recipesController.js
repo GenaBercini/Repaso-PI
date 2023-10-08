@@ -1,6 +1,7 @@
 const axios = require("axios");
 const { API_KEY } = process.env; // En caso de tener API KEY
 const { Recipes, Diets } = require("../db.js");
+const { Op } = require("sequelize");
 const { getDietsDB } = require("./dietsController.js");
 module.exports = {
   getAllRecipeApi: async () => {
@@ -23,10 +24,11 @@ module.exports = {
 
   getRecipeByQueryApi: async (query) => {
     try {
-      let responseAPI = await axios.get(
-        `http://localhost:5000/recipes?name.forename=${query}`
+      let responseAPI = await axios.get(`http://localhost:5000/recipes`);
+      const recipeFound = responseAPI.data.filter((element) =>
+        element.title.toLowerCase().includes(query.toLowerCase())
       );
-      return responseAPI.data;
+      return recipeFound;
     } catch (error) {
       throw new Error(error.message);
     }
@@ -34,8 +36,14 @@ module.exports = {
 
   getAllRecipeDB: async () => {
     try {
-      const recipes = await await Recipes.findAll();
-      return recipes.dataValues;
+      const recipes = await await Recipes.findAll({
+        include: {
+          model: Diets,
+          attributes: ["name"],
+        },
+      });
+      if (recipes.length < 0) throw new Error("No existen recetas creadas");
+      return recipes;
     } catch (error) {
       throw new Error(error.message);
     }
@@ -52,7 +60,7 @@ module.exports = {
       if (recipeIdDB) {
         return recipeIdDB;
       } else {
-        throw new Error("Recipe Not Found");
+        throw new Error("Receta no encontrada");
       }
     } catch (error) {
       throw new Error(error.message);
@@ -62,13 +70,15 @@ module.exports = {
     try {
       let recipes = await Recipes.findAll({
         where: {
-          title: { [Op.substring]: name },
+          title: { [Op.iLike]: `%${name}%` },
         },
         include: {
           model: Diets,
           attributes: ["name"],
         },
       });
+      if (recipes.length < 0)
+        throw new Error("No existen recetas con ese nombre");
       return recipes;
     } catch (error) {
       throw new Error(error.message);
@@ -89,7 +99,7 @@ module.exports = {
         title,
         healthScore,
         pricePerServing,
-        image: image.length > 0 ? image : null,
+        image,
         summary,
         servings,
         readyInMinutes,
@@ -97,7 +107,7 @@ module.exports = {
 
       let dietsDB = await getDietsDB(diets);
       newRecipe.addDiets(dietsDB);
-      return newRecipe;
+      return dietsDB;
     } catch (error) {
       throw new Error(error.message);
     }

@@ -17,8 +17,8 @@ const dietsHandler = {
 
       let allDiets = await Diets.findAll();
       res.json(allDiets);
-    } catch (e) {
-      res.status(404).json({ message: "An error has occurred", error: e });
+    } catch (error) {
+      res.status(404).json({ message: error.message, error: error });
     }
   },
 };

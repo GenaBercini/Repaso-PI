@@ -10,22 +10,22 @@ module.exports = {
         element.diets.forEach((diet) => typesDiets.add(diet));
       });
       return typesDiets;
-    } catch (e) {
-      return e;
+    } catch (error) {
+      throw new Error(error.message);
     }
   },
   getDietsDB: async (diets) => {
     try {
-      let dietDB = await Diets.findAll({
+      let dietsDB = await Diets.findAll({
         where: {
-          name: diets,
+          id: diets,
         },
-        attributes: ["id"],
       });
-      console.log(dietDB);
-      return dietDB;
+      if (dietsDB.length < 0) throw new Error("No existen dietas creadas");
+      let dietsIds = dietsDB.map((diet) => diet.id);
+      return dietsIds;
     } catch (error) {
-      throw new Error({ error: error.message });
+      throw new Error(error.message);
     }
   },
 };
