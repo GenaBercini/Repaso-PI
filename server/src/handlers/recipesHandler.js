@@ -52,6 +52,8 @@ const recipeControllers = {
       diets,
     } = req.body;
     try {
+      if (title.length < 2 || title.length > 20)
+        throw new Error("Debe tener de 2 a 20 caracteres");
       if (
         (title,
         healthScore,
@@ -74,7 +76,9 @@ const recipeControllers = {
         );
         res
           .status(200)
-          .send({ msg: "Successfully created recipe", data: newRecipe });
+          .send({ msg: "Receta creada exitosamente", data: newRecipe });
+      } else {
+        throw new Error("No contiene una de las propiedades necesarias");
       }
     } catch (error) {
       res.status(404).json({ error: error.message });
