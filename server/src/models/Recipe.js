@@ -7,7 +7,7 @@ module.exports = (sequelize) => {
     "Recipes",
     {
       id: {
-        type: DataTypes.UUID,
+        type: DataTypes.UUID, // ES ALFANUMERICO ADSDASFDASD-138123ASD8-ASDAD
         defaultValue: DataTypes.UUIDV4,
         allowNull: false,
         primaryKey: true,
@@ -16,6 +16,12 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
+        validate: {
+          len: {
+            args: [2, 20],
+            msg: "Que el nombre del heroe debe contener entre 2 y 20 caracteres",
+          },
+        },
       },
       servings: {
         type: DataTypes.INTEGER,
@@ -34,8 +40,7 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       image: {
-        type: DataTypes.TEXT,
-        allowNull: true,
+        type: DataTypes.STRING,
         defaultValue:
           "https://res.cloudinary.com/genaro-bercini/image/upload/v1696723917/Polite-Things-You-Do-When-Youre-Trying-Another-Cultural-Food-That-Are-Actually-Rude-2000-d6610b3b71db46c595594a79b469379d_bnnrhr.jpg",
       },

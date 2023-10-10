@@ -107,7 +107,7 @@ module.exports = {
 
       let dietsDB = await getDietsDB(diets);
       newRecipe.addDiets(dietsDB);
-      return dietsDB;
+      return newRecipe;
     } catch (error) {
       throw new Error(error.message);
     }
