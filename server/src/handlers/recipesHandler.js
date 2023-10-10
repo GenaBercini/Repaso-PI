@@ -55,14 +55,13 @@ const recipeControllers = {
       if (title.length < 2 || title.length > 20)
         throw new Error("Debe tener de 2 a 20 caracteres");
       if (
-        (title,
-        healthScore,
-        pricePerServing,
-        image,
-        summary,
-        servings,
-        readyInMinutes,
-        diets)
+        title &&
+        healthScore &&
+        pricePerServing &&
+        summary &&
+        servings &&
+        readyInMinutes &&
+        diets
       ) {
         let newRecipe = await postRecipe(
           title,
