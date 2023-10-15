@@ -1,5 +1,4 @@
 const { Diets } = require("../db.js");
-const axios = require("axios");
 const { getAllTypesApi } = require("../controllers/dietsController.js");
 
 const dietsHandler = {
