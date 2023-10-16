@@ -27,6 +27,67 @@ export const getRecipeById = (id) => {
   };
 };
 
+export const getRecipeByName = (name) => {
+  return async (dispatch) => {
+    dispatch({
+      type: constants.LOADING,
+    });
+    const data = await axios.get(`http://localhost:3001/recipes?name=${name}`);
+    dispatch({
+      type: constants.GET_RECIPE_BY_NAME,
+      payload: data.data,
+    });
+  };
+};
+
+export const getRecipeSortedByName = (nameOrder) => {
+  return (dispatch) => {
+    dispatch({
+      type: constants.LOADING,
+    });
+    dispatch({
+      type: constants.SORT_RECIPES_BY_NAME,
+      payload: nameOrder,
+    });
+  };
+};
+
+export const getRecipeSortedByScore = (scoreOrder) => {
+  return (dispatch) => {
+    dispatch({
+      type: constants.LOADING,
+    });
+    dispatch({
+      type: constants.SORT_RECIPES_BY_SCORE,
+      payload: scoreOrder,
+    });
+  };
+};
+
+export const getRecipeFilterByDiet = (filterDiet) => {
+  return (dispatch) => {
+    dispatch({
+      type: constants.LOADING,
+    });
+    dispatch({
+      type: constants.FILTER_RECIPES_BY_DIET,
+      payload: filterDiet,
+    });
+  };
+};
+
+export const getRecipeFilterByOrigin = (filterOrigin) => {
+  return (dispatch) => {
+    dispatch({
+      type: constants.LOADING,
+    });
+    dispatch({
+      type: constants.FILTER_RECIPES_BY_ORIGIN,
+      payload: filterOrigin,
+    });
+  };
+};
+
 export const getDiets = () => {
   return async (dispatch) => {
     dispatch({
