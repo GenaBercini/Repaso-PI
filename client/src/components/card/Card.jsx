@@ -7,7 +7,17 @@ export function Card({ id, title, image, diets }) {
 
   return (
     <div className={styles.container} onClick={() => navigate(`/detail/${id}`)}>
-      <img className={styles.image} src={image} alt={title} />
+      {image !== "" ? (
+        <img className={styles.image} src={image} alt={title} />
+      ) : (
+        <img
+          className={styles.image}
+          src={
+            "https://res.cloudinary.com/genaro-bercini/image/upload/v1696723917/Polite-Things-You-Do-When-Youre-Trying-Another-Cultural-Food-That-Are-Actually-Rude-2000-d6610b3b71db46c595594a79b469379d_bnnrhr.jpg"
+          }
+          alt={"default card logo"}
+        />
+      )}
       <div className={styles.textContainer}>
         <h4>{title}</h4>
         <div className={styles.diets}>

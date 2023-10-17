@@ -41,7 +41,7 @@
   /* justify-content: center; */
 }
 
-.rightForm div{
+.rightForm .rigthinner{
   display: flex;
   width: 100%;
   gap: 16px;
@@ -58,7 +58,13 @@ label{
   max-width: 570px;
   margin: 16px 0px;
 }
-
+.dietsCont {
+  border: 1px solid red;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .dietsSelect{
   width: 270px;
 }
@@ -68,7 +74,26 @@ label{
   height: 34px;
   max-width: 300px;
 }
-
+.dietCardCont {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.dietCard {
+  border: 1px solid black;
+  padding: 0px 16px;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.dietCard button {
+  margin-left: 16px;
+  border: 1px transparent;
+  background-color: transparent;
+  cursor: pointer;
+}
 textarea{
   margin: 8px 0px;
 }

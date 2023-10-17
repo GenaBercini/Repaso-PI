@@ -36,7 +36,6 @@ export function CreateRecipe() {
     servings: "Serving should be a number between 1 and 10.",
     diets: "At list one diet is required.",
   });
-  console.log(inputError, newRecipe);
 
   function handleChange(e) {
     const userValue = e.target.value;
@@ -100,8 +99,7 @@ export function CreateRecipe() {
       ) {
         delete inputError.servings;
       } else {
-        inputError.servings =
-          "Serving should be a number between 1 and 10.";
+        inputError.servings = "Serving should be a number between 1 and 10.";
       }
     }
     // PRICE PER SERVING
@@ -126,13 +124,17 @@ export function CreateRecipe() {
   // onSelectChange --> function for select Temperament
   function onSelectChange(event) {
     const { name, value } = event.target;
-    //  let errors = newBreed.errors;
     const diets = newRecipe.diets;
 
     !diets.includes(value) && diets.push(value);
 
     if (name === "dietsSelect") {
       if (newRecipe.diets.length > 0) delete inputError.diets;
+      else
+        setInputError({
+          ...inputError,
+          diets: "At list one diet is required.",
+        });
     }
     setNewRecipe({
       ...newRecipe,
@@ -140,17 +142,17 @@ export function CreateRecipe() {
     });
   }
   // Delete function for Temperament Select
-  function deleteTemperament(e) {
-    //   const { name, value } = e.target;
-    //   setNewBreed({
-    //     ...newBreed,
-    //     temperament: newBreed.temperament.filter((temp) => temp !== value),
-    //   });
-    //   if (name === "deleteTemp") {
-    //     if (newBreed.temperament.length <= 1) {
-    //       newBreed.errors.temperament = "* At list one temperament is required.";
-    //     } else delete newBreed.errors.temperament;
-    //   }
+  function deleteTemperament(event) {
+    const { value } = event.target;
+
+    setNewRecipe({
+      ...newRecipe,
+      diets: newRecipe.diets.filter((diet) => diet !== value),
+    });
+
+    if (newRecipe.diets.length < 1) {
+      inputError.diets = "At list one diet is required.";
+    } else delete inputError.diets;
   }
 
   // useEffect where validation takes place
@@ -203,7 +205,7 @@ export function CreateRecipe() {
             </label>
           </div>
           <div className={styles.rightForm}>
-            <div>
+            <div className={styles.rigthinner}>
               <label>
                 Health Score
                 <input
@@ -225,7 +227,7 @@ export function CreateRecipe() {
                 />
               </label>
             </div>
-            <div>
+            <div className={styles.rigthinner}>
               <label>
                 Servings
                 <input
@@ -247,18 +249,37 @@ export function CreateRecipe() {
                 />
               </label>
             </div>
-            <label className={styles.dietsSelect}>
-              Choose the diets
-              <select name="dietsSelect" onChange={onSelectChange}>
-                {diets.map((diet) => {
-                  return (
-                    <option value={diet.id} key={diet.name}>
-                      {diet.name}
-                    </option>
-                  );
-                })}
-              </select>
-            </label>
+            <div className={styles.dietsCont}>
+              <label className={styles.dietsSelect}>
+                Choose the diets
+                <select name="dietsSelect" onChange={onSelectChange}>
+                  {diets.map((diet) => {
+                    return (
+                      <option value={diet.name} key={diet.id}>
+                        {diet.name}
+                      </option>
+                    );
+                  })}
+                </select>
+              </label>
+              <div className={styles.dietCardCont}>
+                {newRecipe.diets.length > 0 &&
+                  newRecipe.diets.map((diet) => (
+                    <div className={styles.dietCard} key={diet}>
+                      <p>{diet}</p>
+                      <button
+                        type="button"
+                        onClick={deleteTemperament}
+                        className={styles.deleteTemp}
+                        name="deleteTemp"
+                        value={diet}
+                      >
+                        X
+                      </button>
+                    </div>
+                  ))}
+              </div>
+            </div>
           </div>
         </div>
         <input type="submit" disabled={disabled} className={styles.submitBtn} />
