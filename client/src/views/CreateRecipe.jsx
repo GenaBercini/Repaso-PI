@@ -28,7 +28,6 @@ export function CreateRecipe() {
   const [inputError, setInputError] = useState({
     title:
       "The title of the recipe can't contain numbers and should be between 5 and 30 characters.",
-    // image: "",
     summary: "The description should be at least 10 words length.",
     healthScore: "Health score should be a number between 1 and 100.",
     pricePerServing: "The price should be a number between 1 and 500 dolars.",
@@ -40,7 +39,6 @@ export function CreateRecipe() {
   function handleChange(e) {
     const userValue = e.target.value;
     const validator = e.target.name;
-    //  let errors = newBreed.errors;
 
     // TITLE
     if (validator === "title") {
@@ -150,7 +148,7 @@ export function CreateRecipe() {
       diets: newRecipe.diets.filter((diet) => diet !== value),
     });
 
-    if (newRecipe.diets.length < 1) {
+    if (newRecipe.diets.length <= 1) {
       inputError.diets = "At list one diet is required.";
     } else delete inputError.diets;
   }
@@ -182,6 +180,9 @@ export function CreateRecipe() {
                 value={newRecipe.title}
                 onChange={handleChange}
               />
+              <div className={styles.errorMessage}>
+                {inputError.title ? inputError.title : ""}
+              </div>
             </label>
             <label>
               Image
@@ -202,6 +203,9 @@ export function CreateRecipe() {
                 value={newRecipe.summary}
                 onChange={handleChange}
               />
+              <div className={styles.errorMessage}>
+                {inputError.summary ? inputError.summary : ""}
+              </div>
             </label>
           </div>
           <div className={styles.rightForm}>
@@ -215,6 +219,9 @@ export function CreateRecipe() {
                   value={newRecipe.healthScore}
                   onChange={handleChange}
                 />
+                <div className={styles.errorMessage}>
+                  {inputError.healthScore ? inputError.healthScore : ""}
+                </div>
               </label>
               <label>
                 Time Preparation
@@ -225,6 +232,9 @@ export function CreateRecipe() {
                   value={newRecipe.readyInMinutes}
                   onChange={handleChange}
                 />
+                <div className={styles.errorMessage}>
+                  {inputError.readyInMinutes ? inputError.readyInMinutes : ""}
+                </div>
               </label>
             </div>
             <div className={styles.rigthinner}>
@@ -237,6 +247,9 @@ export function CreateRecipe() {
                   value={newRecipe.servings}
                   onChange={handleChange}
                 />
+                <div className={styles.errorMessage}>
+                  {inputError.servings ? inputError.servings : ""}
+                </div>
               </label>
               <label>
                 Price per Servings
@@ -247,6 +260,9 @@ export function CreateRecipe() {
                   value={newRecipe.pricePerServing}
                   onChange={handleChange}
                 />
+                <div className={styles.errorMessage}>
+                  {inputError.pricePerServing ? inputError.pricePerServing : ""}
+                </div>
               </label>
             </div>
             <div className={styles.dietsCont}>
@@ -261,6 +277,9 @@ export function CreateRecipe() {
                     );
                   })}
                 </select>
+                <div className={styles.errorMessage}>
+                  {inputError.diets ? inputError.diets : ""}
+                </div>
               </label>
               <div className={styles.dietCardCont}>
                 {newRecipe.diets.length > 0 &&
