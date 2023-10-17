@@ -1,0 +1,76 @@
+.container {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 100vh;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: antiquewhite;
+}
+.header {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 34px;
+}
+.headerChild{
+  flex: 0 1 50%;
+}
+.image {
+  width: 500px;
+  height: auto;
+  border-radius: 18px;
+}
+h3 {
+  font-size: x-large;
+  text-decoration: underline;
+}
+.diets {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.diet {
+  border: 1px solid white;
+  border-radius: 18px;
+  padding: 6px 12px;
+  margin: 4px;
+  background-color: white;
+}
+.numbers {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.numbers div {
+  width: 50%
+}
+.subTitles {
+  font-size: large;
+  font-weight: 700;
+  font-style: italic;
+}
+.description {
+  width: 70%;
+  font-size: large;
+  text-align: center;
+}
+
+.backButtom {
+  box-sizing: border-box;
+  padding: 8px 18px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 18px;
+  font-size: medium;
+  margin-top: 24px;
+  cursor: pointer;
+}
