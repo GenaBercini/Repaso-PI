@@ -43,7 +43,21 @@ module.exports = {
         },
       });
       if (recipes.length < 0) throw new Error("No existen recetas creadas");
-      return recipes;
+      const recipesAux = recipes.map((recipe) => {
+        let diets = recipe.Diets.map((diet) => diet.name);
+        return {
+          id: recipe.id,
+          title: recipe.title,
+          healthScore: recipe.healthScore,
+          pricePerServing: recipe.pricePerServing,
+          readyInMinutes: recipe.readyInMinutes,
+          servings: recipe.servings,
+          image: recipe.image,
+          summary: recipe.summary,
+          diets: diets,
+        };
+      });
+      return recipesAux;
     } catch (error) {
       throw new Error(error.message);
     }
@@ -58,7 +72,18 @@ module.exports = {
         },
       });
       if (recipeIdDB) {
-        return recipeIdDB;
+        let diets = recipeIdDB.Diets.map((diet) => diet.name);
+        return {
+          id: recipeIdDB.id,
+          title: recipeIdDB.title,
+          healthScore: recipeIdDB.healthScore,
+          pricePerServing: recipeIdDB.pricePerServing,
+          readyInMinutes: recipeIdDB.readyInMinutes,
+          servings: recipeIdDB.servings,
+          image: recipeIdDB.image,
+          summary: recipeIdDB.summary,
+          diets: diets,
+        };
       } else {
         throw new Error("Receta no encontrada");
       }
@@ -79,7 +104,21 @@ module.exports = {
       });
       if (recipes.length < 0)
         throw new Error("No existen recetas con ese nombre");
-      return recipes;
+      const recipesAux = recipes.map((recipe) => {
+        let diets = recipe.Diets.map((diet) => diet.name);
+        return {
+          id: recipe.id,
+          title: recipe.title,
+          healthScore: recipe.healthScore,
+          pricePerServing: recipe.pricePerServing,
+          readyInMinutes: recipe.readyInMinutes,
+          servings: recipe.servings,
+          image: recipe.image,
+          summary: recipe.summary,
+          diets: diets,
+        };
+      });
+      return recipesAux;
     } catch (error) {
       throw new Error(error.message);
     }
