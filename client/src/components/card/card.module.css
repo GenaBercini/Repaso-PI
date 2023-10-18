@@ -11,17 +11,14 @@
   margin: 16px;
   cursor: pointer;
 }
-
 .image {
   width: 300px;
   height: auto;
   border-radius: 18px 18px 0px 0px;
 }
-
 .textContainer {
   margin: 0px 10px;
 }
-
 .diets {
   display: flex;
   flex-direction: row;
@@ -30,7 +27,6 @@
   flex-wrap: wrap;
   overflow: hidden;
 }
-
 .diet {
   border: 1px solid white;
   border-radius: 18px;

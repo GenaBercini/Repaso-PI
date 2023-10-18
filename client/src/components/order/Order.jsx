@@ -8,12 +8,14 @@ import {
 
 export function Order() {
   const dispatch = useDispatch();
+
   function onChange(e) {
     let sort = e.target.value;
     if (sort === "A-Z" || sort === "Z-A") dispatch(getRecipeSortedByName(sort));
     if (sort === "ascendent" || sort === "descendent")
       dispatch(getRecipeSortedByScore(sort));
   }
+  
   return (
     <div className={styles.container}>
       <label htmlFor="alfabeticalSort">

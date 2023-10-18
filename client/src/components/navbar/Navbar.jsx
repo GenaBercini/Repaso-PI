@@ -1,15 +1,16 @@
 import React from "react";
 import styles from "./navbar.module.css";
 import { Link } from "react-router-dom";
-import { Searchbar } from "../searchbar/Searchbar";
+
 import { Order } from "../order/Order";
 import { Filter } from "../filter/Filter";
+import { Searchbar } from "../searchbar/Searchbar";
 
 export function Navbar() {
   return (
     <div className={styles.navbarContainer}>
       <Link className={styles.linkButtons} to="/home">
-        Dog App
+        Recipe App
       </Link>
       <div className={styles.filterCont}>
         <Searchbar />
@@ -17,7 +18,7 @@ export function Navbar() {
         <Order />
       </div>
       <Link className={styles.linkButtons} to="/create">
-        Create Dog
+        Create Recipe
       </Link>
     </div>
   );
