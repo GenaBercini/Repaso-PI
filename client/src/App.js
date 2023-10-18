@@ -2,12 +2,12 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { Home } from "./views/Home";
-import { NotFound } from "./views/NotFound";
 import { Landing } from "./views/Landing";
+import { NotFound } from "./views/NotFound";
 import { RecipeDetail } from "./views/RecipeDetail";
 import { CreateRecipe } from "./views/CreateRecipe";
 
-function App() {
+export function App() {
   return (
     <BrowserRouter>
       <Routes>
@@ -20,5 +20,3 @@ function App() {
     </BrowserRouter>
   );
 }
-
-export default App;

@@ -1,12 +1,10 @@
 .container {
   display: flex;
 }
-
 label {
   box-sizing: border-box;
   padding: 0px 20px;
 }
-
 .labelTitle {
   font-size: small;
   margin: 4px;

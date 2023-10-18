@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { getDiets } from "../redux/actions";
+import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import styles from "./styles/createRecipe.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { getDiets } from "../redux/actions";
 
 export function CreateRecipe() {
   const navigate = useNavigate();

@@ -2,7 +2,9 @@ import React, { useEffect } from "react";
 import styles from "./styles/recipeDetail.module.css";
 import { useParams, useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
+
 import { getRecipeById } from "../redux/actions";
+
 import { Loading } from "../components/loading/Loading";
 
 export function RecipeDetail() {
