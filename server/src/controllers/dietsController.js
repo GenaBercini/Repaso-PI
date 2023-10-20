@@ -18,7 +18,7 @@ module.exports = {
     try {
       let dietsDB = await Diets.findAll({
         where: {
-          id: diets,
+          name: diets,
         },
       });
       if (dietsDB.length < 0) throw new Error("No existen dietas creadas");
