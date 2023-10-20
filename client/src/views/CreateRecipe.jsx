@@ -8,14 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 export function CreateRecipe() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const diets = useSelector((state) => state.diets);
-  useEffect(() => {
-    dispatch(getDiets());
-  }, [dispatch]);
-
-  const [disabled, setDisabled] = useState(false);
-  const [newRecipe, setNewRecipe] = useState({
+  const formInitialState = {
     title: "",
     healthScore: 0,
     pricePerServing: 0,
@@ -24,8 +17,8 @@ export function CreateRecipe() {
     servings: 0,
     readyInMinutes: 0,
     diets: [],
-  });
-  const [inputError, setInputError] = useState({
+  };
+  const errorsInitialState = {
     title:
       "The title of the recipe can't contain numbers and should be between 5 and 30 characters.",
     summary: "The description should be at least 10 words length.",
@@ -34,7 +27,16 @@ export function CreateRecipe() {
     readyInMinutes: "Preparation should be a number between 15 and 60 minutes.",
     servings: "Serving should be a number between 1 and 10.",
     diets: "At list one diet is required.",
-  });
+  };
+
+  const diets = useSelector((state) => state.diets);
+  useEffect(() => {
+    dispatch(getDiets());
+  }, [dispatch]);
+
+  const [disabled, setDisabled] = useState(false);
+  const [newRecipe, setNewRecipe] = useState(formInitialState);
+  const [inputError, setInputError] = useState(errorsInitialState);
 
   function handleChange(e) {
     const userValue = e.target.value;
@@ -159,11 +161,17 @@ export function CreateRecipe() {
   }, [newRecipe, inputError]);
 
   // Submit function to add a new breed
-  function onSubmit(e) {
-    e.preventDefault();
-    axios.post("http://localhost:3001/recipes", newRecipe);
-    alert("Recipe added successfully");
-    navigate("/home");
+  async function onSubmit(event) {
+    event.preventDefault();
+    try {
+      await axios.post("http://localhost:3001/recipes", newRecipe);
+      alert("Recipe added successfully");
+      setNewRecipe(formInitialState);
+      setInputError(errorsInitialState);
+      navigate("/home");
+    } catch (error) {
+      alert("Recipe couldn't be charged on the database");
+    }
   }
 
   return (
