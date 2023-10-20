@@ -23,12 +23,10 @@ export function Home() {
   const [currentPage, setCurrentPage] = useState(1);
   const [recipesPerPage] = useState(8);
 
-  // Get current posts
   const indexOfLastPost = currentPage * recipesPerPage;
   const indexOfFirstPost = indexOfLastPost - recipesPerPage;
   const currentRecipes = recipes.slice(indexOfFirstPost, indexOfLastPost);
 
-  // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (

@@ -52,18 +52,6 @@ export const getRecipeSortedByName = (nameOrder) => {
   };
 };
 
-export const getRecipeSortedByScore = (scoreOrder) => {
-  return (dispatch) => {
-    dispatch({
-      type: constants.LOADING,
-    });
-    dispatch({
-      type: constants.SORT_RECIPES_BY_SCORE,
-      payload: scoreOrder,
-    });
-  };
-};
-
 export const getRecipeFilterByDiet = (filterDiet) => {
   return (dispatch) => {
     dispatch({
@@ -72,18 +60,6 @@ export const getRecipeFilterByDiet = (filterDiet) => {
     dispatch({
       type: constants.FILTER_RECIPES_BY_DIET,
       payload: filterDiet,
-    });
-  };
-};
-
-export const getRecipeFilterByOrigin = (filterOrigin) => {
-  return (dispatch) => {
-    dispatch({
-      type: constants.LOADING,
-    });
-    dispatch({
-      type: constants.FILTER_RECIPES_BY_ORIGIN,
-      payload: filterOrigin,
     });
   };
 };

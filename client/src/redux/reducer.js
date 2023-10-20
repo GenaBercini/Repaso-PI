@@ -43,35 +43,6 @@ export const rootReducer = (state = initialState, action) => {
         recipes: orderedByName,
         loading: false,
       };
-    case constants.SORT_RECIPES_BY_SCORE:
-      let orderedByScore = [...state.recipes];
-      orderedByScore.sort((a, b) => {
-        if (a.healthScore < b.healthScore)
-          return action.payload === "ascendent" ? -1 : 1;
-        if (a.healthScore > b.healthScore)
-          return action.payload === "ascendent" ? 1 : -1;
-        return 0;
-      });
-      return {
-        ...state,
-        recipes: orderedByScore,
-        loading: false,
-      };
-    case constants.FILTER_RECIPES_BY_ORIGIN:
-      let filteredByOrigin = [...state.recipes];
-      if (action.payload === "all") filteredByOrigin = [...state.fullRecipes];
-      if (action.payload === "api")
-        filteredByOrigin = filteredByOrigin.filter(
-          (recipe) => !recipe.createDB
-        );
-      if (action.payload === "db")
-        filteredByOrigin = filteredByOrigin.filter((recipe) => recipe.createDB);
-
-      return {
-        ...state,
-        recipes: filteredByOrigin,
-        loading: false,
-      };
     case constants.FILTER_RECIPES_BY_DIET:
       let filteredByDiet = [...state.recipes];
       if (action.payload === "all") filteredByDiet = [...state.fullRecipes];
