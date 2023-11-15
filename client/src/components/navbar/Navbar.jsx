@@ -17,7 +17,7 @@ export function Navbar() {
         <Filter />
         <Order />
       </div>
-      <Link className={styles.linkButtons} to="/create">
+      <Link className={styles.linkButtons} to="/short-form">
         Create Recipe
       </Link>
     </div>

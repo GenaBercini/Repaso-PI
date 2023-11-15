@@ -1,0 +1,60 @@
+.container{
+  box-sizing: border-box;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.formContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+}
+
+.formContainer label {
+  width: 500px;
+  margin: 10px 0px;
+}
+
+.errorMessage {
+  font-size: small;
+  color: red;
+}
+
+.textInput{
+  height: 30px;
+  font-size: 17px;
+  margin: 4px 0px;
+}
+
+.submitBtn{
+  border: none;
+  background-color: yellow;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0.7;
+  margin-top: 16px;
+}
+
+.submitBtn:hover {
+  opacity: 1;
+}
+
+.dietCard{
+  border: 1px solid black;
+  padding: 4px 14px;
+  margin: 4px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+.dietCard:hover{
+  border: 1px solid red;
+  color: red;
+  cursor: pointer;
+}

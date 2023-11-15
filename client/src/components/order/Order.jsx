@@ -6,9 +6,8 @@ import { getRecipeSortedByName } from "../../redux/actions";
 export function Order() {
   const dispatch = useDispatch();
 
-  function onChange(e) {
-    let sort = e.target.value;
-    if (sort === "A-Z" || sort === "Z-A") dispatch(getRecipeSortedByName(sort));
+  function onChange(event) {
+    dispatch(getRecipeSortedByName(event.target.value));
   }
 
   return (

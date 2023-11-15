@@ -1,12 +1,13 @@
-import axios from "axios";
+// import axios from "axios";
 import { getDiets } from "../redux/actions";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import styles from "./styles/createRecipe.module.css";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
 export function CreateRecipe() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const dispatch = useDispatch();
   const formInitialState = {
     title: "",
@@ -38,81 +39,19 @@ export function CreateRecipe() {
   const [newRecipe, setNewRecipe] = useState(formInitialState);
   const [inputError, setInputError] = useState(errorsInitialState);
 
-  function handleChange(e) {
-    const userValue = e.target.value;
-    const validator = e.target.name;
+  function handleChange(event) {
+    const userValue = event.target.value;
+    const validator = event.target.name;
 
-    // TITLE
     if (validator === "title") {
-      if (
-        isNaN(userValue) &&
-        userValue.trim().length > 0 &&
-        userValue.trim().length < 30
-      ) {
+      if (userValue.length > 5 && userValue.length < 30) {
         delete inputError.title;
       } else {
-        inputError.title =
-          "The title of the recipe can't contain numbers and should be between 5 and 30 characters.";
-      }
-    }
-    // DESCRIPTION
-    if (validator === "summary") {
-      if (isNaN(userValue) && userValue.split(" ").length >= 10) {
-        delete inputError.summary;
-      } else {
-        inputError.summary =
-          "The description should be at least 10 words length.";
-      }
-    }
-    // HEALTH SCORE
-    if (validator === "healthScore") {
-      if (
-        !isNaN(userValue) &&
-        parseFloat(userValue) > 1 &&
-        parseFloat(userValue) < 100
-      ) {
-        delete inputError.healthScore;
-      } else {
-        inputError.healthScore =
-          "Health score should be a number between 1 and 100.";
-      }
-    }
-    // READY IN MINUTES
-    if (validator === "readyInMinutes") {
-      if (
-        !isNaN(userValue) &&
-        parseFloat(userValue) > 15 &&
-        parseFloat(userValue) < 60
-      ) {
-        delete inputError.readyInMinutes;
-      } else {
-        inputError.readyInMinutes =
-          "Preparation should be a number between 15 and 60 minutes.";
-      }
-    }
-    // SERVINGS
-    if (validator === "servings") {
-      if (
-        !isNaN(userValue) &&
-        parseFloat(userValue) > 1 &&
-        parseFloat(userValue) < 10
-      ) {
-        delete inputError.servings;
-      } else {
-        inputError.servings = "Serving should be a number between 1 and 10.";
-      }
-    }
-    // PRICE PER SERVING
-    if (validator === "pricePerServing") {
-      if (
-        !isNaN(userValue) &&
-        parseFloat(userValue) > 1 &&
-        parseFloat(userValue) < 500
-      ) {
-        delete inputError.pricePerServing;
-      } else {
-        inputError.pricePerServing =
-          "The price should be a number between 1 and 500 dolars.";
+        setInputError({
+          ...inputError,
+          title:
+            "The title of the recipe can't contain numbers and should be between 5 and 30 characters.",
+        });
       }
     }
 
@@ -121,7 +60,7 @@ export function CreateRecipe() {
       [validator]: userValue,
     });
   }
-  // onSelectChange --> function for select Temperament
+
   function onSelectChange(event) {
     const { name, value } = event.target;
     const diets = newRecipe.diets;
@@ -136,13 +75,14 @@ export function CreateRecipe() {
           diets: "At list one diet is required.",
         });
     }
+
     setNewRecipe({
       ...newRecipe,
       diets: diets,
     });
   }
-  // Delete function for Temperament Select
-  function deleteTemperament(event) {
+
+  function deleteDiets(event) {
     const { value } = event.target;
 
     setNewRecipe({
@@ -155,23 +95,13 @@ export function CreateRecipe() {
     } else delete inputError.diets;
   }
 
-  // useEffect where validation takes place
   useEffect(() => {
     Object.keys(inputError).length > 0 ? setDisabled(true) : setDisabled(false);
   }, [newRecipe, inputError]);
 
-  // Submit function to add a new breed
-  async function onSubmit(event) {
-    event.preventDefault();
-    try {
-      await axios.post("http://localhost:3001/recipes", newRecipe);
-      alert("Recipe added successfully");
-      setNewRecipe(formInitialState);
-      setInputError(errorsInitialState);
-      navigate("/home");
-    } catch (error) {
-      alert("Recipe couldn't be charged on the database");
-    }
+  function onSubmit() {
+    axios.post("http://localhost:3001/recipes", newRecipe);
+    setNewRecipe(formInitialState);
   }
 
   return (
@@ -296,7 +226,7 @@ export function CreateRecipe() {
                       <p>{diet}</p>
                       <button
                         type="button"
-                        onClick={deleteTemperament}
+                        onClick={deleteDiets}
                         className={styles.deleteTemp}
                         name="deleteTemp"
                         value={diet}

@@ -30,7 +30,7 @@ export function Card({ id, title, image, diets }) {
               );
             })
           ) : (
-            <p className={styles.diet}>No hay recetas suficientes</p>
+            <p className={styles.diet}>No hay dietas suficientes</p>
           )}
         </div>
       </div>

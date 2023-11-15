@@ -40,14 +40,15 @@ export const getRecipeByName = (name) => {
   };
 };
 
-export const getRecipeSortedByName = (nameOrder) => {
-  return (dispatch) => {
+export const getDiets = () => {
+  return async (dispatch) => {
     dispatch({
       type: constants.LOADING,
     });
+    const data = await axios.get("http://localhost:3001/diets");
     dispatch({
-      type: constants.SORT_RECIPES_BY_NAME,
-      payload: nameOrder,
+      type: constants.GET_DIETS,
+      payload: data.data,
     });
   };
 };
@@ -64,15 +65,14 @@ export const getRecipeFilterByDiet = (filterDiet) => {
   };
 };
 
-export const getDiets = () => {
-  return async (dispatch) => {
+export const getRecipeSortedByName = (nameOrder) => {
+  return (dispatch) => {
     dispatch({
       type: constants.LOADING,
     });
-    const data = await axios.get("http://localhost:3001/diets");
     dispatch({
-      type: constants.GET_DIETS,
-      payload: data.data,
+      type: constants.SORT_RECIPES_BY_NAME,
+      payload: nameOrder,
     });
   };
 };

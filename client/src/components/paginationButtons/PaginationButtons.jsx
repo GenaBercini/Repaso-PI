@@ -19,7 +19,7 @@ export function PaginationButtons({
         <li
           key={number}
           value={number}
-          onClick={(e) => paginate(e.target.value)}
+          onClick={(event) => paginate(event.target.value)}
           className={
             currentPage === number ? styles.currentRecipes : styles.pageItem
           }

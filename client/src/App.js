@@ -6,6 +6,7 @@ import { Landing } from "./views/Landing";
 import { NotFound } from "./views/NotFound";
 import { RecipeDetail } from "./views/RecipeDetail";
 import { CreateRecipe } from "./views/CreateRecipe";
+import { ShortForm } from "./views/ShortForm";
 
 export function App() {
   return (
@@ -15,6 +16,7 @@ export function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/detail/:id" element={<RecipeDetail />} />
         <Route path="/create" element={<CreateRecipe />} />
+        <Route path="/short-form" element={<ShortForm />} />
         <Route path="/*" element={<NotFound message="Page" />} />
       </Routes>
     </BrowserRouter>
